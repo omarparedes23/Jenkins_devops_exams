@@ -5,7 +5,7 @@
 replicaCount: 3
 
 image:
-  repository: omarelunico/fastapiapp
+  repository: omarelunico/movie-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -40,7 +40,7 @@ securityContext: {}
 service:
   type: NodePort
   port: 80
-  nodePort: 30007  
+  nodePort: 30008  
   targetPort: 8000
 
 ingress:
