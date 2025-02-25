@@ -2,7 +2,7 @@ pipeline {
     environment {
         DOCKER_ID = "omarelunico"
         DOCKER_PASS = credentials("DOCKER_HUB_PASS")
-        KUBECONFIG = credentials("kubeconfig")
+        KUBECONFIG = credentials("config")
     }
     agent any
     stages {
