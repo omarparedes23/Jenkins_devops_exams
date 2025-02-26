@@ -73,7 +73,6 @@ pipeline {
                 }
                 script {
                     sh '''
-                    echo ${env.GIT_BRANCH}
 
                     rm -Rf .kube
 
