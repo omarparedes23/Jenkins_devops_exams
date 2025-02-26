@@ -97,6 +97,9 @@ pipeline {
             }
         }
         stage('Deploy to Prod') {
+            when {
+                   expression { env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master' }
+            }
             steps {
                 script {
                     echo "Deploying to production from branch test: ${env.GIT_BRANCH}"
