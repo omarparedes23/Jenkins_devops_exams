@@ -1,0 +1,8 @@
+postgresql:
+  auth:
+    username: movie_db_username
+    password: movie_db_password
+    database: movie_db_dev
+  service:
+    type: ClusterIP
+    port: 5432

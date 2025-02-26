@@ -41,6 +41,11 @@ service:
   type: NodePort
   port: 80
   targetPort: 8000
+env:
+  - name: DATABASE_URI
+    value: postgresql://movie_db_username:movie_db_password@movie-db-postgresql.dev.svc.cluster.local:5432/movie_db_dev
+  - name: CAST_SERVICE_HOST_URL
+    value: http://cast-service.dev.svc.cluster.local:80/api/v1/casts/
 
 ingress:
   enabled: false
