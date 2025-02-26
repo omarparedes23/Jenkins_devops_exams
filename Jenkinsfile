@@ -97,9 +97,6 @@ pipeline {
             }
         }
         stage('Deploy to Prod') {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     echo "Deploying to production from branch test: ${env.GIT_BRANCH}"
