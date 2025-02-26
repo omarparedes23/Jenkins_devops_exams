@@ -86,9 +86,6 @@ pipeline {
                 script {
                     echo "Deploying to production from branch: ${env.GIT_BRANCH.replace('origin/', '')}"
                 }
-                timeout(time: 15, unit: "MINUTES") {
-                    input message: '¿Deploy in Production?', ok: 'Yes'
-                }
                 script {
                     sh '''
                     rm -Rf .kube
