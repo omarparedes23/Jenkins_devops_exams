@@ -73,9 +73,12 @@ pipeline {
                 }
                 script {
                     sh '''
-                    echo "Deploying to production from branch: ${env.GIT_BRANCH}"
+                    echo ${env.GIT_BRANCH}
+
                     rm -Rf .kube
+
                     mkdir .kube
+
                     cat $KUBECONFIG > .kube/config
                     helm upgrade --install cast-service charts/cast-service --namespace prod --set image.tag=$BUILD_ID --create-namespace
                     helm upgrade --install movie-service charts/movie-service --namespace prod --set image.tag=$BUILD_ID --create-namespace
