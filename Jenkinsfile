@@ -34,6 +34,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo update
                     helm dependency build charts/cast-db
                     helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace dev --create-namespace
@@ -51,6 +53,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo update
                     helm dependency build charts/cast-db
                     helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace qa --create-namespace
@@ -68,6 +72,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo update
                     helm dependency build charts/cast-db
                     helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace staging --create-namespace
@@ -91,6 +97,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo update
                     helm dependency build charts/cast-db
                     helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace prod --create-namespace
