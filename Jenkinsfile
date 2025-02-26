@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-    stage('Verify Docker Images') {
+    stage('Testing Docker Images') {
         steps {
             script {
                 sh '''
@@ -98,11 +98,14 @@ pipeline {
         }
         stage('Deploy to Prod') {
             when {
-                branch 'origin/master'
+                branch 'master'
             }
             steps {
                 script {
-                    echo "Deploying to production from branch: ${env.GIT_BRANCH.replace('origin/', '')}"
+                    echo "Deploying to production from branch: ${env.GIT_BRANCH}"
+                }
+                timeout(time: 15, unit: "MINUTES") {
+                           input message: '¿Deploy in Production?', ok: 'Yes'
                 }
                 script {
                     sh '''
