@@ -1,8 +1,8 @@
 pipeline {
     environment {
-        DOCKER_ID = "omarelunico"  // Tu ID de DockerHub
-        DOCKER_PASS = credentials("DOCKER_HUB_PASS")  // Credencial para DockerHub
-        KUBECONFIG = credentials("config")  // Credencial para el archivo kubeconfig
+        DOCKER_ID = "omarelunico"
+        DOCKER_PASS = credentials("DOCKER_HUB_PASS")
+        KUBECONFIG = credentials("config")
     }
     agent any
     stages {
@@ -34,6 +34,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm dependency build charts/cast-db
+                    helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace dev --create-namespace
                     helm upgrade --install movie-db charts/movie-db --namespace dev --create-namespace
                     helm upgrade --install cast-service charts/cast-service --namespace dev --set image.tag=$BUILD_ID --create-namespace
@@ -49,6 +51,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm dependency build charts/cast-db
+                    helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace qa --create-namespace
                     helm upgrade --install movie-db charts/movie-db --namespace qa --create-namespace
                     helm upgrade --install cast-service charts/cast-service --namespace qa --set image.tag=$BUILD_ID --create-namespace
@@ -64,6 +68,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm dependency build charts/cast-db
+                    helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace staging --create-namespace
                     helm upgrade --install movie-db charts/movie-db --namespace staging --create-namespace
                     helm upgrade --install cast-service charts/cast-service --namespace staging --set image.tag=$BUILD_ID --create-namespace
@@ -88,6 +94,8 @@ pipeline {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
+                    helm dependency build charts/cast-db
+                    helm dependency build charts/movie-db
                     helm upgrade --install cast-db charts/cast-db --namespace prod --create-namespace
                     helm upgrade --install movie-db charts/movie-db --namespace prod --create-namespace
                     helm upgrade --install cast-service charts/cast-service --namespace prod --set image.tag=$BUILD_ID --create-namespace
