@@ -69,7 +69,7 @@ pipeline {
         stage('Deploy to Prod') {
             steps {
                 timeout(time: 15, unit: "MINUTES") {
-                    input message: '¿Deploy in Production?', ok: 'Yes'
+                    input message: '¿Deploy in Production  Test?', ok: 'Yes'
                 }
                 script {
                     sh '''
