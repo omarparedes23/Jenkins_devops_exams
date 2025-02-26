@@ -73,6 +73,7 @@ pipeline {
                 }
                 script {
                     sh '''
+                    echo "Deploying to production from branch: ${env.GIT_BRANCH}"
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
