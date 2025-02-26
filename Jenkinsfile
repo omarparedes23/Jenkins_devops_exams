@@ -16,6 +16,18 @@ pipeline {
                 }
             }
         }
+
+    stage('Verify Docker Images') {
+        steps {
+            script {
+                sh '''
+                docker images $DOCKER_ID/cast-service:$BUILD_ID
+                docker images $DOCKER_ID/movie-service:$BUILD_ID
+                '''
+            }
+        }
+    }
+
         stage('Push to DockerHub') {
             steps {
                 script {
