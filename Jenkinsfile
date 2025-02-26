@@ -86,7 +86,7 @@ pipeline {
         }
         stage('Deploy to Prod') {
             when {
-                branch 'master'
+                branch 'origin/master'
             }
             steps {
                 script {
