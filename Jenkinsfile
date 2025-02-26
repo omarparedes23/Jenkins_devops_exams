@@ -68,8 +68,8 @@ pipeline {
         }
         stage('Deploy to Prod') {
             steps {
-                timeout(time: 15, unit: "MINUTES") {
-                    input message: '¿Deploy in Production  Test?', ok: 'Yes'
+                script {
+	            echo "Deploying to production from branch: ${env.GIT_BRANCH}"
                 }
                 script {
                     sh '''
