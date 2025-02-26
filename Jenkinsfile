@@ -102,7 +102,7 @@ pipeline {
             }
             steps {
                 script {
-                    echo "Deploying to production from branch: ${env.GIT_BRANCH}"
+                    echo "Deploying to production from branch test: ${env.GIT_BRANCH}"
                 }
                 timeout(time: 15, unit: "MINUTES") {
                            input message: '¿Deploy in Production?', ok: 'Yes'
